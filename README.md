@@ -43,10 +43,6 @@ cp -R ai-first-steps ~/.codex/skills/
 
 讲解规则见 [SKILL.md](ai-first-steps/SKILL.md)，可复用的版式见 [HTML 模板](ai-first-steps/assets/lesson-template.html)。
 
-## 短视频演示顺序
-
-从仓库首页开始录，依次展示 **Code → Download ZIP → 解压 → 复制 Skill 文件夹 → 在 Codex 提问 → 打开 HTML 小课**。最后点一下小课里的「显示答案」，观众就能看到下载和安装后能做出什么。
-
 ## 许可证
 
 [MIT](LICENSE)
