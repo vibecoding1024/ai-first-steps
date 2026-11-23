@@ -24,8 +24,6 @@
 
 生成后点击对话里的 HTML 文件链接，或在访达中找到这个文件并用浏览器打开。如果 Codex 里暂时找不到 Skill，可以重新启动 Codex 后再试。
 
-[Codex Skills 官方说明](https://learn.chatgpt.com/docs/build-skills)
-
 ## 样例
 
 下载 HTML 文件后，用浏览器打开即可。
