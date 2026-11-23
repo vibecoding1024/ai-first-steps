@@ -1,8 +1,15 @@
-# AI 零基础入门
+# AI 零基础入门 · 中文 Agent Skill
 
-一个面向 AI 初学者的中文 Codex Skill。用日常例子讲清 AI 概念，并生成一页可以离线阅读的 HTML 小课。你可以用这个仓库练习从 GitHub 下载文件、安装 Skill，再生成自己的第一节小课。
+用生活例子讲懂大模型、MCP 和 Vibe Coding，并把答案生成一页可离线阅读的 HTML 小课。适合第一次接触 AI 的读者，也可以用来练习从 GitHub 下载和安装 Agent Skill。
 
-适合问「什么是 Skill、大模型和 MCP？」「什么是 Vibe Coding？」「Token 是什么？」。每节课先给出一句简明解释，再用熟悉的场景拆解概念。根据主题，可以加入对照卡片、演示或可展开的小练习。
+A Chinese-language Agent Skill that explains AI concepts to beginners and generates offline HTML lessons.
+
+## 小课样例
+
+下载 HTML 文件后，用浏览器打开即可。
+
+- [Skill、大模型和 MCP 是什么？](ai-first-steps-lesson.html) 用图书馆查书的例子讲清三者的分工。
+- [Vibe Coding 是什么？](vibe-coding-lesson.html) 用做乘法练习网页的例子演示怎么让 AI 写代码，再根据试用结果改进。
 
 ## 1. 从 GitHub 下载
 
@@ -24,12 +31,7 @@
 
 生成后点击对话里的 HTML 文件链接，或在访达中找到这个文件并用浏览器打开。如果 Codex 里暂时找不到 Skill，可以重新启动 Codex 后再试。
 
-## 样例
-
-下载 HTML 文件后，用浏览器打开即可。
-
-- [第一次学 AI，先懂这三个词](ai-first-steps-lesson.html) 用图书馆查书的例子解释 Skill、大模型和 MCP。
-- [什么是 Vibe Coding？](vibe-coding-lesson.html) 用做口算练习页的例子解释如何让 AI 边试边改，并带有可点击的演示。
+也可以问「Token 是什么？」或「MCP 在查资料时有什么用？」
 
 讲解规则见 [SKILL.md](ai-first-steps/SKILL.md)，可复用的版式见 [HTML 模板](ai-first-steps/assets/lesson-template.html)。
 
