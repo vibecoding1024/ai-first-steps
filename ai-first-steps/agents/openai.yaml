@@ -1,0 +1,4 @@
+interface:
+  display_name: "AI 零基础入门"
+  short_description: "用生活例子讲懂 AI 基础概念，生成可离线阅读的 HTML 小课"
+  default_prompt: "用 $ai-first-steps 讲清楚 Skill、大模型和 MCP，并做成一页好读的 HTML 小课。"

@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>第一次学 AI：什么是 Skill、大模型和 MCP？ · AI 入门小课</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --paper: #f6f6ed;
+      --card: #fffffa;
+      --ink: #192c27;
+      --muted: #4d6258;
+      --line: #d9dfd2;
+      --green: #203e34;
+      --lime: #e1efaa;
+      --mint: #e5f1e7;
+      --peach: #ffe8d7;
+      --serif: "Songti SC", "Noto Serif CJK SC", SimSun, serif;
+      --sans: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font: 1rem/1.8 var(--sans); }
+    h1, h2, h3, p, figure { margin: 0; }
+    h1, h2 { font-family: var(--serif); font-weight: 800; }
+    a { color: inherit; text-underline-offset: .24em; }
+    a:hover { text-decoration-thickness: 2px; }
+    :focus-visible { outline: 2px solid currentColor; outline-offset: 5px; }
+    [id] { scroll-margin-top: 1.25rem; }
+
+    .wrap { width: min(100% - 3rem, 72rem); margin-inline: auto; }
+    .site-head {
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: .6rem 1.2rem;
+      padding-block: 1.05rem; border-bottom: 1px solid var(--line);
+    }
+    .brand { display: inline-flex; align-items: center; gap: .6rem; font-weight: 750; text-decoration: none; }
+    .brand-mark {
+      display: grid; place-items: center; width: 2rem; height: 2rem;
+      border-radius: .5rem; background: var(--green); color: var(--lime); font-size: .72rem;
+    }
+    .nav { display: flex; flex-wrap: wrap; gap: .25rem 1.3rem; font-size: .91rem; color: var(--muted); }
+    .nav a { text-decoration-color: transparent; }
+    .nav a:hover { text-decoration-color: currentColor; }
+
+    .hero { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 2rem; align-items: center; padding-block: 3.25rem; }
+    .hero:has(.hero-copy:only-child) { grid-template-columns: minmax(0, 1fr); }
+    h1 { font-size: clamp(2.15rem, 5.1vw, 4.55rem); line-height: 1.15; letter-spacing: -.045em; overflow-wrap: anywhere; }
+    h1 mark { color: inherit; background: linear-gradient(transparent 67%, var(--lime) 67% 96%, transparent 96%); }
+    .hero-copy p { max-width: 33rem; margin-top: 1.3rem; font-size: clamp(1rem, 1.55vw, 1.18rem); color: var(--muted); text-wrap: pretty; }
+    .hero-art {
+      display: grid; place-items: center; min-height: 18rem; overflow: hidden; border-radius: 1.35rem;
+      background-color: var(--green); background-image: radial-gradient(#668477 1px, transparent 1px);
+      background-size: 1.25rem 1.25rem;
+    }
+    .art-board { display: grid; place-items: center; position: relative; width: min(100%, 27rem); height: 18rem; }
+    .art-board::before, .art-board::after {
+      content: ""; position: absolute; width: 65%; height: 57%; border: 1px dashed #9ab6a5;
+      border-radius: 50%; transform: rotate(-19deg);
+    }
+    .art-board::after { transform: rotate(22deg); }
+    .art-center, .art-label { position: absolute; z-index: 1; box-shadow: 0 .45rem 0 #102b2375; }
+    .art-center {
+      display: grid; place-items: center; background: var(--lime); color: var(--ink);
+      width: 7.1rem; height: 5.5rem; border-radius: 1.15rem; transform: rotate(-8deg);
+      font: 800 3rem/1 var(--sans);
+    }
+    .art-label { border-radius: .58rem; padding: .3rem .72rem; color: var(--ink); font-size: 1rem; font-weight: 750; }
+    .art-left { left: 8%; top: 21%; background: var(--peach); transform: rotate(-9deg); }
+    .art-right { right: 7%; top: 23%; background: var(--mint); transform: rotate(9deg); }
+    .art-bottom { right: 14%; bottom: 18%; background: var(--card); transform: rotate(-6deg); }
+
+    .section-title { margin-bottom: 1.1rem; font-size: clamp(1.65rem, 3.25vw, 2.35rem); line-height: 1.25; }
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr)); gap: 1rem; }
+    .card {
+      --accent: var(--mint);
+      min-width: 0; padding: clamp(1.2rem, 2.4vw, 1.75rem); border: 1px solid var(--line);
+      border-radius: 1.2rem; background: var(--card);
+    }
+    .card.peach { --accent: var(--peach); }
+    .card.lime { --accent: var(--lime); }
+    .concept-icon {
+      display: grid; place-items: center; width: 2.65rem; height: 2.65rem;
+      border-radius: .65rem; background: var(--accent); font: 750 1.25rem/1 var(--sans);
+    }
+    .card h3 { margin-top: .85rem; font-size: 1.48rem; line-height: 1.3; overflow-wrap: anywhere; }
+    .term { margin-top: .25rem; color: var(--muted); font-size: .81rem; overflow-wrap: anywhere; }
+    .definition { margin-top: .85rem; font-weight: 700; }
+    .example { margin-top: .95rem; padding-top: .95rem; border-top: 1px solid var(--line); color: var(--muted); }
+    .example strong { color: var(--ink); }
+
+    .scenario, .practice { margin-top: 2.5rem; padding: clamp(1.25rem, 3.4vw, 2.5rem); border-radius: 1.2rem; }
+    .scenario { background: var(--green); color: #f6fbf3; }
+    .scenario .section-title { color: var(--lime); }
+    .scenario blockquote { margin: 0; font-size: 1.12rem; }
+    .roles { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr)); gap: .75rem; margin: 1.2rem 0 0; }
+    .roles > div { border: 1px solid #749387; border-radius: .75rem; padding: .9rem 1rem; }
+    .roles dt { font-weight: 750; color: var(--lime); }
+    .roles dd { margin: .2rem 0 0; }
+    .scenario-note { margin-top: 1rem; color: #e1eee6; font-size: .9rem; }
+
+    .practice { background: var(--peach); }
+    details { margin-top: .9rem; }
+    summary { cursor: pointer; font-weight: 750; }
+    details > p { margin-top: .55rem; }
+    .answer {
+      display: inline-block; max-width: 100%; padding: .45rem .85rem;
+      border: 1px solid #936b51; border-radius: .65rem; background: #fff7ed;
+    }
+
+    .answer-icon::after { content: "+"; margin-left: .55em; }
+    details[open] .answer-icon::after { content: "−"; }
+
+    .site-foot {
+      display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: .5rem 1.25rem;
+      margin-top: 2.5rem; padding-block: 1.2rem 1.7rem; border-top: 1px solid var(--line);
+      font-size: .85rem; color: var(--muted);
+    }
+    .source-links { display: flex; flex-wrap: wrap; gap: .2rem .9rem; margin: 0; padding: 0; list-style: none; }
+
+    @media (max-width: 760px) {
+      .wrap { width: calc(100% - 2rem); }
+      .hero { grid-template-columns: 1fr; gap: 1.35rem; padding-block: 2rem; }
+      .hero-art { min-height: 13rem; }
+      .art-board { height: 13rem; }
+      .art-center { width: 5.3rem; height: 4rem; font-size: 2.2rem; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+    @media print {
+      body { background: white; }
+      .wrap { width: 100%; }
+      .hero { display: block; padding-block: 1rem; }
+      .hero-art, .nav, .back-top { display: none; }
+      .cards { grid-template-columns: 1fr; }
+      .card, .scenario, .practice { break-inside: avoid; }
+      .scenario { background: white; color: var(--ink); border: 1px solid var(--line); }
+      .scenario .section-title, .roles dt, .scenario-note { color: var(--ink); }
+    }
+  </style>
+</head>
+<body id="top">
+  <header class="site-head wrap">
+    <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true">AI</span>AI 入门小课</a>
+    <nav class="nav" aria-label="小课目录">
+      <a href="#concepts">认识三个词</a>
+      <a href="#scenario">一起找本书</a>
+      <a href="#practice">小练习</a>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <div class="hero">
+      <div class="hero-copy">
+        <h1>第一次学 AI，<br><mark>先懂这三个词。</mark></h1>
+        <p>想让 AI 帮你找一本书？来看看大模型怎么组织回答，Skill 怎么教它做事，MCP 又怎么帮它接上查书工具。</p>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="art-board">
+          <span class="art-center">AI</span>
+          <span class="art-label art-left">Skill</span>
+          <span class="art-label art-right">大模型</span>
+          <span class="art-label art-bottom">MCP</span>
+        </div>
+      </div>
+    </div>
+
+    <section id="concepts" aria-labelledby="concepts-title">
+      <h2 class="section-title" id="concepts-title">先认识它们</h2>
+      <div class="cards">
+        <article class="card peach">
+          <span class="concept-icon" aria-hidden="true">≡</span>
+          <h3>Skill</h3>
+          <p class="term">技能 · 给 AI 的做事说明</p>
+          <p class="definition">Skill 是一套可以反复用的说明，告诉 AI 助手遇到某类任务时怎么做。</p>
+          <p class="example"><strong>像一张任务卡</strong><br>照着「读书卡」写书名、最喜欢的情节和读后感。AI 也可以用写好的 Skill，把每次读书笔记都整理成这样的格式。</p>
+        </article>
+        <article class="card lime">
+          <span class="concept-icon" aria-hidden="true">Aa</span>
+          <h3>大模型</h3>
+          <p class="term">用大量资料训练出来的 AI 模型</p>
+          <p class="definition">大模型是一种规模很大的 AI 模型。它从大量资料中学到规律，再用这些规律处理新问题。擅长读写和对话的那一类叫大语言模型。</p>
+          <p class="example"><strong>像文字接龙</strong><br>读到「下雨了，我出门前带上了……」，语言模型会接上合适的文字，比如「雨伞」。它可以一小段一小段地组织回答，有时也会说错。</p>
+        </article>
+        <article class="card">
+          <span class="concept-icon" aria-hidden="true">↔</span>
+          <h3>MCP</h3>
+          <p class="term" lang="en">Model Context Protocol</p>
+          <p class="definition">MCP 是一套通用的连接规则，让 AI 应用能使用接好的外部工具或读取资料。</p>
+          <p class="example"><strong>像 USB 的接法</strong><br>电脑和键盘按同一套规则来，就能接在一起。AI 应用和查书工具也可以用 MCP 约定怎么传问题、怎么把结果送回来。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="scenario" id="scenario" aria-labelledby="scenario-title">
+      <h2 class="section-title" id="scenario-title">请 AI 帮你找一本书</h2>
+      <blockquote>「帮我查查图书馆有没有《小王子》，再告诉我在哪个书架。」</blockquote>
+      <dl class="roles">
+        <div><dt>Skill 给出做事步骤</dt><dd>先按书名查，再把能否借阅和书架位置写清楚。</dd></div>
+        <div><dt>MCP 帮应用接上查书工具</dt><dd>AI 应用可以通过 MCP 把书名交给查询工具，再收到馆藏结果。</dd></div>
+        <div><dt>大语言模型组织回答</dt><dd>它把查到的结果说清楚，比如「可以借，在三号书架」。</dd></div>
+      </dl>
+      <p class="scenario-note">查到馆藏的前提是图书馆提供查询工具，AI 应用已接好工具，并且有权查询这些馆藏信息。</p>
+    </section>
+
+    <section class="practice" id="practice" aria-labelledby="practice-title">
+      <h2 class="section-title" id="practice-title">试着答一答</h2>
+      <p>你想让 AI 每次介绍一本书时，都按「书名、作者、推荐理由」来写。这份固定的做事说明，最像今天学的哪个词？</p>
+      <details>
+        <summary class="answer">查看答案<span class="answer-icon" aria-hidden="true"></span></summary>
+        <p><strong>Skill。</strong>你可以把这些要求写进 Skill，让 AI 下次做同类任务时继续用。</p>
+      </details>
+    </section>
+  </main>
+
+  <footer class="site-foot wrap">
+    <ul class="source-links" aria-label="参考资料">
+      <li><a href="https://learn.chatgpt.com/docs/build-skills">Skill 官方说明</a></li>
+      <li><a href="https://openai.com/policies/how-chatgpt-and-our-foundation-models-are-developed/">大模型训练说明</a></li>
+      <li><a href="https://blog.modelcontextprotocol.io/posts/welcome-to-mcp-blog/">MCP 官方介绍</a></li>
+    </ul>
+    <a class="back-top" href="#top">回到顶部 ↑</a>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>什么是 Vibe Coding？ · AI 入门小课</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --paper: #f7f4ef;
+      --card: #fffdfa;
+      --ink: #29243c;
+      --muted: #524b66;
+      --line: #ded8e4;
+      --deep: #2e2547;
+      --highlight: #e5d8ff;
+      --mint: #e5f1e7;
+      --peach: #ffe8d7;
+      --serif: "Songti SC", "Noto Serif CJK SC", SimSun, serif;
+      --sans: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font: 1rem/1.8 var(--sans); }
+    h1, h2, h3, p, figure { margin: 0; }
+    h1, h2 { font-family: var(--serif); font-weight: 800; }
+    a { color: inherit; text-underline-offset: .24em; }
+    a:hover { text-decoration-thickness: 2px; }
+    :focus-visible { outline: 2px solid currentColor; outline-offset: 5px; }
+    [id] { scroll-margin-top: 1.25rem; }
+
+    .wrap { width: min(100% - 3rem, 72rem); margin-inline: auto; }
+    .site-head {
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: .6rem 1.2rem;
+      padding-block: 1.05rem; border-bottom: 1px solid var(--line);
+    }
+    .brand { display: inline-flex; align-items: center; gap: .6rem; font-weight: 750; text-decoration: none; }
+    .brand-mark {
+      display: grid; place-items: center; width: 2rem; height: 2rem;
+      border-radius: .5rem; background: var(--deep); color: var(--highlight); font-size: .72rem;
+    }
+    .nav { display: flex; flex-wrap: wrap; gap: .25rem 1.3rem; font-size: .91rem; color: var(--muted); }
+    .nav a { text-decoration-color: transparent; }
+    .nav a:hover { text-decoration-color: currentColor; }
+
+    .hero { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 2rem; align-items: center; padding-block: 3.25rem; }
+    h1 { font-size: clamp(2.15rem, 5.1vw, 4.55rem); line-height: 1.15; letter-spacing: -.045em; overflow-wrap: anywhere; }
+    h1 mark { color: inherit; background: linear-gradient(transparent 67%, var(--highlight) 67% 96%, transparent 96%); }
+    .hero-copy p { max-width: 33rem; margin-top: 1.3rem; font-size: clamp(1rem, 1.55vw, 1.18rem); color: var(--muted); text-wrap: pretty; }
+    .hero-art {
+      display: grid; place-items: center; min-height: 18rem; padding: 1.2rem;
+      border-radius: 1.35rem; background-color: var(--deep);
+      background-image: radial-gradient(#7b6fa1 1px, transparent 1px);
+      background-size: 1.25rem 1.25rem;
+    }
+    .demo {
+      width: min(100%, 17.5rem); min-height: 13rem; padding: 1.1rem;
+      border: 1px solid var(--highlight); border-radius: 1rem; background: var(--card);
+      box-shadow: .45rem .5rem 0 #17102a; text-align: center;
+    }
+    .demo h2 { font: 750 .86rem/1.6 var(--sans); color: var(--muted); }
+    .equation { margin-top: .2rem; font: 800 clamp(1.9rem, 4vw, 2.9rem)/1.3 var(--sans); }
+    .math-answer { color: var(--deep); font-weight: 750; }
+    .when-open, details[open] .when-closed { display: none; }
+    details[open] .when-open { display: inline; }
+
+    .section-title { margin-bottom: 1.1rem; font-size: clamp(1.65rem, 3.25vw, 2.35rem); line-height: 1.25; }
+    .section-intro { max-width: 43rem; margin-bottom: 1.2rem; color: var(--muted); }
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr)); gap: 1rem; }
+    .card {
+      --accent: var(--mint);
+      min-width: 0; padding: clamp(1.2rem, 2.4vw, 1.75rem); border: 1px solid var(--line);
+      border-radius: 1.2rem; background: var(--card);
+    }
+    .card.peach { --accent: var(--peach); }
+    .card.lavender { --accent: var(--highlight); }
+    .concept-icon {
+      display: grid; place-items: center; width: 2.65rem; height: 2.65rem;
+      border-radius: .65rem; background: var(--accent); font: 750 1.25rem/1 var(--sans);
+    }
+    .card h3 { margin-top: .85rem; font-size: 1.48rem; line-height: 1.3; overflow-wrap: anywhere; }
+    .definition { margin-top: .85rem; font-weight: 700; }
+    .example { margin-top: .95rem; padding-top: .95rem; border-top: 1px solid var(--line); color: var(--muted); }
+
+    .scenario { margin-top: 2.5rem; padding: clamp(1.25rem, 3.4vw, 2.5rem); border-radius: 1.2rem; }
+    .scenario { background: var(--deep); color: #fffafc; }
+    .scenario .section-title { color: var(--highlight); }
+    .scenario > p { max-width: 52rem; }
+    .scenario-note { margin-top: 1rem; color: #f0e7ff; font-size: .92rem; }
+
+    details { margin-top: .9rem; }
+    summary { cursor: pointer; font-weight: 750; }
+    details > p { margin-top: .55rem; }
+    .answer {
+      display: inline-block; max-width: 100%; padding: .45rem .85rem;
+      border: 1px solid #82729e; border-radius: .65rem; background: #eee5ff;
+    }
+
+
+    .site-foot {
+      display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: .5rem 1.25rem;
+      margin-top: 2.5rem; padding-block: 1.2rem 1.7rem; border-top: 1px solid var(--line);
+      font-size: .85rem; color: var(--muted);
+    }
+    .source-links { display: flex; flex-wrap: wrap; gap: .2rem .9rem; margin: 0; padding: 0; list-style: none; }
+
+    @media (max-width: 760px) {
+      .wrap { width: calc(100% - 2rem); }
+      .hero { grid-template-columns: 1fr; gap: 1.35rem; padding-block: 2rem; }
+      .hero-art { min-height: 13rem; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+    @media print {
+      body { background: white; }
+      .wrap { width: 100%; }
+      .hero { display: block; padding-block: 1rem; }
+      .nav, .back-top { display: none; }
+      .hero-art { min-height: 0; margin-top: 1rem; background: white; }
+      .demo { min-height: 0; box-shadow: none; }
+      .cards { grid-template-columns: 1fr; }
+      .card, .scenario, .hero-art { break-inside: avoid; }
+      .scenario { background: white; color: var(--ink); border: 1px solid var(--line); }
+      .scenario .section-title, .scenario-note { color: var(--ink); }
+    }
+  </style>
+</head>
+<body id="top">
+  <header class="site-head wrap">
+    <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true">AI</span>AI 入门小课</a>
+    <nav class="nav" aria-label="小课目录">
+      <a href="#example">看例子</a>
+      <a href="#meaning">认识这个词</a>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <div class="hero">
+      <div class="hero-copy">
+        <h1>什么是<br><mark lang="en">Vibe Coding</mark>？</h1>
+        <p>用平常说话的方式告诉 AI 你想做什么，让它写代码。你试试做出来的东西，再告诉 AI 哪里需要改。</p>
+      </div>
+
+      <div class="hero-art">
+        <section class="demo" aria-labelledby="demo-title">
+          <h2 id="demo-title">口算练习页示例</h2>
+          <p class="equation">3 × 4 = ?</p>
+          <details>
+            <summary class="answer"><span class="when-closed">显示答案</span><span class="when-open">收起答案</span></summary>
+            <p class="math-answer">答案是 12。</p>
+          </details>
+        </section>
+      </div>
+    </div>
+
+    <section id="example" aria-labelledby="example-title">
+      <h2 class="section-title" id="example-title">跟 AI 做一页口算练习</h2>
+      <p class="section-intro">就像请同学帮你画海报。你说想画什么，等草稿画好，再指出哪里想改。做网页时，AI 负责把你的想法写成代码。</p>
+      <div class="cards">
+        <article class="card peach">
+          <span class="concept-icon" aria-hidden="true">1</span>
+          <h3>说出想法</h3>
+          <p class="definition">你告诉 AI 想做什么。</p>
+          <p class="example">「帮我做个乘法练习网页。先显示题目，点一下按钮再显示答案。」</p>
+        </article>
+        <article class="card lavender">
+          <span class="concept-icon" aria-hidden="true">2</span>
+          <h3>试试第一版</h3>
+          <p class="definition">AI 写好代码，你打开网页试一试。</p>
+          <p class="example">比如点一下「显示答案」，看看 3 × 4 的答案有没有出现。</p>
+        </article>
+        <article class="card">
+          <span class="concept-icon" aria-hidden="true">3</span>
+          <h3>看着结果继续改</h3>
+          <p class="definition">你说哪里想改，AI 接着改代码。</p>
+          <p class="example">「再加一个『下一题』按钮。换题的时候，把上一题的答案收起来。」</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="scenario" id="meaning" aria-labelledby="meaning-title">
+      <h2 class="section-title" id="meaning-title">为什么叫 Vibe Coding？</h2>
+      <p><span lang="en">Vibe</span> 在这里可以理解成「感觉」。Andrej Karpathy 在 2025 年提出这个说法时，指的是一种凭试用感觉往下做的方式。他主要看做出来的东西，遇到问题就让 AI 改，很少翻看代码本身。这个词也常用来泛指用日常语言请 AI 写代码。</p>
+      <p class="scenario-note">如果你要把练习页发给同学，可以多试几道题，确认每道题的答案都对，换题时也会把旧答案收起来。</p>
+    </section>
+  </main>
+
+  <footer class="site-foot wrap">
+    <ul class="source-links" aria-label="参考资料">
+      <li><a href="https://x.com/karpathy/status/1886192184808149383">Karpathy 提出这个词的原帖</a></li>
+      <li><a href="https://www.collinsdictionary.com/dictionary/english/vibe-coding">《柯林斯英语词典》释义</a></li>
+    </ul>
+    <a class="back-top" href="#top">回到顶部 ↑</a>
+  </footer>
+</body>
+</html>
