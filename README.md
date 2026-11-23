@@ -10,23 +10,15 @@
 2. 打开「下载」文件夹，解压下载好的 ZIP。双击里面的 `vibe-coding-lesson.html`，可以先看看生成的小课长什么样。
 3. 在解压目录里找到名为 `ai-first-steps` 的子文件夹。打开它会看到 `SKILL.md`，以及 `assets` 和 `agents` 两个子文件夹。
 
-[GitHub 官方下载指南](https://docs.github.com/en/repositories/working-with-files/using-files/downloading-files-from-github)
+## 2. 安装到 AI Agent
 
-## 2. 安装到 Codex（macOS）
-
-1. 在访达（Finder）按 **⌘⇧G**，输入 `~/.codex/skills` 后按回车。
-2. 把刚才找到的整个 `ai-first-steps` 文件夹复制进去。复制后，`SKILL.md` 应位于 `~/.codex/skills/ai-first-steps/SKILL.md`。
-
-也可以在终端打开解压后的文件夹，再运行下面的命令。
-
-```bash
-mkdir -p ~/.codex/skills
-cp -R ai-first-steps ~/.codex/skills/
-```
+1. 确认你使用的 AI Agent 支持安装基于 `SKILL.md` 的 Skills。
+2. 按该工具的方式导入整个 `ai-first-steps` 文件夹。如果工具通过本地目录加载 Skills，就把文件夹复制到它指定的技能目录。
+3. 在工具里确认能找到「AI 零基础入门」或 `ai-first-steps`，就可以开始试用了。
 
 ## 3. 生成你的第一节小课
 
-打开 Codex，选一个本地工作区，新建对话，然后输入这句话。
+以 Codex 为例，选一个本地工作区，新建对话，然后输入这句话。
 
 > 用 $ai-first-steps 讲讲什么是 Vibe Coding，生成一页 HTML 小课。用做乘法练习网页举例，并放一道可以点击「显示答案」的口算题。
 
