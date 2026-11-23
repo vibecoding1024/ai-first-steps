@@ -1,5 +1,7 @@
 # AI 零基础入门 · 中文 Agent Skill
 
+[English README](README.en.md)
+
 用生活例子讲懂大模型、MCP 和 Vibe Coding，并把答案生成一页可离线阅读的 HTML 小课。适合第一次接触 AI 的读者，也可以用来练习从 GitHub 下载和安装 Agent Skill。
 
 A Chinese-language Agent Skill that explains AI concepts to beginners and generates offline HTML lessons.
